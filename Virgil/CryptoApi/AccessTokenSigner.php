@@ -54,11 +54,14 @@ interface AccessTokenSigner
 
 
     /**
-     * @param string $signature
+     * @param string    $signature
+     *
+     * @param string    $data
+     * @param PublicKey $publicKey
      *
      * @return bool
      */
-    public function verifyTokenSignature($signature);
+    public function verifyTokenSignature($signature, $data, PublicKey $publicKey);
 
 
     /**
