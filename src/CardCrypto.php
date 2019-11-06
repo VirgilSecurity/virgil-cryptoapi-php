@@ -37,12 +37,11 @@
 
 namespace Virgil\CryptoApi;
 
-
 /**
- * Interface AccessTokenSigner
+ * Interface CardCrypto
  * @package Virgil\CryptoApi
  */
-interface AccessTokenSigner
+interface CardCrypto
 {
     /**
      * @param string     $data
@@ -50,22 +49,35 @@ interface AccessTokenSigner
      *
      * @return string
      */
-    public function generateTokenSignature($data, PrivateKey $privateKey);
-
+    public function generateSignature(string $data, PrivateKey $privateKey): string;
 
     /**
      * @param string    $signature
-     *
      * @param string    $data
      * @param PublicKey $publicKey
      *
      * @return bool
      */
-    public function verifyTokenSignature($signature, $data, PublicKey $publicKey);
-
+    public function verifySignature(string $signature, string $data, PublicKey $publicKey): bool;
 
     /**
+     * @param PublicKey $publicKey
+     *
      * @return string
      */
-    public function getAlgorithm();
+    public function exportPublicKey(PublicKey $publicKey): string;
+
+    /**
+     * @param string $data
+     *
+     * @return PublicKey
+     */
+    public function importPublicKey($data): PublicKey;
+
+    /**
+     * @param string $data
+     *
+     * @return string
+     */
+    public function generateSHA512($data): string;
 }
