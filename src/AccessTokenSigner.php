@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2015-2018 Virgil Security Inc.
+ * Copyright (C) 2015-2019 Virgil Security Inc.
  *
  * All rights reserved.
  *
@@ -37,52 +37,31 @@
 
 namespace Virgil\CryptoApi;
 
-
 /**
- * Interface CardCrypto
+ * Interface AccessTokenSigner
  * @package Virgil\CryptoApi
  */
-interface CardCrypto
+interface AccessTokenSigner
 {
     /**
-     * @param string     $data
+     * @param string $data
      * @param PrivateKey $privateKey
      *
      * @return string
      */
-    public function generateSignature($data, PrivateKey $privateKey);
-
-
-    /**
-     * @param string    $signature
-     * @param string    $data
-     * @param PublicKey $publicKey
-     *
-     * @return bool
-     */
-    public function verifySignature($signature, $data, PublicKey $publicKey);
-
+    public function generateTokenSignature(string $data, PrivateKey $privateKey): string;
 
     /**
+     * @param string $signature
+     * @param $data
      * @param PublicKey $publicKey
      *
      * @return string
      */
-    public function exportPublicKey(PublicKey $publicKey);
-
-
-    /**
-     * @param string $data
-     *
-     * @return PublicKey
-     */
-    public function importPublicKey($data);
-
+    public function verifyTokenSignature(string $signature, $data, PublicKey $publicKey): string;
 
     /**
-     * @param string $data
-     *
      * @return string
      */
-    public function generateSHA512($data);
+    public function getAlgorithm(): string;
 }

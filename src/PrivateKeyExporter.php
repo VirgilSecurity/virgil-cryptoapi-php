@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright (C) 2015-2018 Virgil Security Inc.
+ * Copyright (C) 2015-2019 Virgil Security Inc.
  *
  * All rights reserved.
  *
@@ -37,7 +37,6 @@
 
 namespace Virgil\CryptoApi;
 
-
 /**
  * Interface PrivateKeyExporter
  * @package Virgil\CryptoApi
@@ -49,7 +48,7 @@ interface PrivateKeyExporter
      *
      * @return string
      */
-    public function exportPrivateKey(PrivateKey $key);
+    public function exportPrivateKey(PrivateKey $key): string;
 
 
     /**
@@ -57,5 +56,5 @@ interface PrivateKeyExporter
      *
      * @return PrivateKey
      */
-    public function importPrivateKey($data);
+    public function importPrivateKey(string $data);
 }
